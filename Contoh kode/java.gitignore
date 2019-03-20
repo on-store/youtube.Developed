@@ -1,0 +1,14 @@
+// Sample java code for activities.list
+
+public static void main(String[] args) throws IOException {
+    YouTube youtube = getYouTubeService();
+    try {
+        HashMap<String, String> parameters = new HashMap<>();
+        parameters.put("part", "snippet,contentDetails");
+        parameters.put("channelId", "UC_x5XG1OV2P6uZZ5FSM9Ttw");
+        parameters.put("maxResults", "25");
+
+        YouTube.Activities.List activitiesListRequest = youtube.activities().list(parameters.get("part").toString());
+        if (parameters.containsKey("channelId") && parameters.get("channelId") != "") {
+            activitiesListRequest.setChannelId(parameters.get("channelId").toString());
+        }
